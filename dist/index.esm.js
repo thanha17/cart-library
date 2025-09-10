@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 function _arrayLikeToArray(r, a) {
@@ -144,15 +144,33 @@ var Modal = function Modal(_ref) {
   var open = _ref.open,
     onClose = _ref.onClose,
     children = _ref.children;
+  // Đóng khi nhấn phím ESC
+  useEffect(function () {
+    var handleEsc = function handleEsc(e) {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", handleEsc);
+    return function () {
+      return document.removeEventListener("keydown", handleEsc);
+    };
+  }, [onClose]);
   if (!open) return null;
   return /*#__PURE__*/createPortal(/*#__PURE__*/React.createElement("div", {
-    className: "fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+    className: "fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50",
+    onClick: onClose // click ngoài modal để đóng
   }, /*#__PURE__*/React.createElement("div", {
-    className: "bg-white p-4 rounded w-96"
+    className: "bg-white p-6 rounded-lg w-96 shadow-lg transform transition-all duration-300 scale-100",
+    onClick: function onClick(e) {
+      return e.stopPropagation();
+    } // chặn click bên trong
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex justify-end"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "float-right",
+    className: "text-gray-500 hover:text-gray-700 text-xl font-bold",
     onClick: onClose
-  }, "X"), children)), document.body);
+  }, "\xD7")), /*#__PURE__*/React.createElement("div", {
+    className: "mt-2"
+  }, children))), document.body);
 };
 
 // src/components/Card.js

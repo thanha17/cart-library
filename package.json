@@ -1,6 +1,6 @@
 {
   "name": "cart-library-thanha17",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A reusable React Cart UI library",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -9,10 +9,15 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
-  "keywords": ["react", "cart", "ui", "library"],
+  "keywords": [
+    "react",
+    "cart",
+    "ui",
+    "library"
+  ],
   "author": "Your Name",
   "license": "ISC",
   "devDependencies": {
