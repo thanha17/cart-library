@@ -1,13 +1,14 @@
-// src/components/Cart/Cart.js
 import React, { useState } from "react";
+import styles from "./Cart.module.css";
 import { CartItem } from "./CartItem";
-import { Button } from "../..";
 
 export const Cart = ({ initialItems = [] }) => {
   const [items, setItems] = useState(initialItems);
 
   const handleUpdate = (id, quantity) => {
-    setItems(items.map(item => item.id === id ? { ...item, quantity } : item));
+    setItems(items.map(item =>
+      item.id === id ? { ...item, quantity } : item
+    ));
   };
 
   const handleRemove = (id) => {
@@ -15,7 +16,8 @@ export const Cart = ({ initialItems = [] }) => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
+      <div className={styles.title}>Giỏ hàng</div>
       {items.map(item => (
         <CartItem
           key={item.id}
@@ -24,9 +26,6 @@ export const Cart = ({ initialItems = [] }) => {
           onRemove={handleRemove}
         />
       ))}
-      <div className="mt-4">
-        <Button onClick={() => alert("Checkout!")}>Checkout</Button>
-      </div>
     </div>
   );
 };

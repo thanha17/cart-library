@@ -1,11 +1,6 @@
-// src/components/Input.js
 import React from "react";
+import styles from "./Input.module.css";
 
 export const Input = (props) => {
-  return (
-    <input
-      className="border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-blue-500"
-      {...props}
-    />
-  );
+  return <input className={styles.input} {...props} />;
 };

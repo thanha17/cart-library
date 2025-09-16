@@ -9,14 +9,6 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
-function _arrayLikeToArray(r, a) {
-  (null == a || a > r.length) && (a = r.length);
-  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
-  return n;
-}
-function _arrayWithHoles(r) {
-  if (Array.isArray(r)) return r;
-}
 function _defineProperty(e, r, t) {
   return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
     value: t,
@@ -33,36 +25,6 @@ function _extends() {
     }
     return n;
   }, _extends.apply(null, arguments);
-}
-function _iterableToArrayLimit(r, l) {
-  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
-  if (null != t) {
-    var e,
-      n,
-      i,
-      u,
-      a = [],
-      f = !0,
-      o = !1;
-    try {
-      if (i = (t = t.call(r)).next, 0 === l) {
-        if (Object(t) !== t) return;
-        f = !1;
-      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
-    } catch (r) {
-      o = !0, n = r;
-    } finally {
-      try {
-        if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return;
-      } finally {
-        if (o) throw n;
-      }
-    }
-    return a;
-  }
-}
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 function ownKeys(e, r) {
   var t = Object.keys(e);
@@ -105,9 +67,6 @@ function _objectWithoutPropertiesLoose(r, e) {
   }
   return t;
 }
-function _slicedToArray(r, e) {
-  return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
-}
 function _toPrimitive(t, r) {
   if ("object" != typeof t || !t) return t;
   var e = t[Symbol.toPrimitive];
@@ -122,133 +81,130 @@ function _toPropertyKey(t) {
   var i = _toPrimitive(t, "string");
   return "symbol" == typeof i ? i : i + "";
 }
-function _unsupportedIterableToArray(r, a) {
-  if (r) {
-    if ("string" == typeof r) return _arrayLikeToArray(r, a);
-    var t = {}.toString.call(r).slice(8, -1);
-    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
-  }
-}
 
-var _excluded = ["variant"];
-var Button = function Button(_ref) {
-  var _ref$variant = _ref.variant,
-    variant = _ref$variant === void 0 ? "primary" : _ref$variant,
+var styles$5 = {"btn":"Button-module_btn__tbKC3","primary":"Button-module_primary__ypFor","secondary":"Button-module_secondary__74qS3"};
+
+const _excluded = ["variant"];
+const Button = _ref => {
+  let {
+      variant = "primary"
+    } = _ref,
     props = _objectWithoutProperties(_ref, _excluded);
-  var className = variant === "primary" ? "bg-blue-500 text-white px-4 py-2 rounded" : "bg-gray-200 text-black px-4 py-2 rounded";
+  const className = "".concat(styles$5.btn, " ").concat(variant === "primary" ? styles$5.primary : styles$5.secondary);
   return /*#__PURE__*/React__default["default"].createElement("button", _extends({
     className: className
   }, props));
 };
 
-var Input = function Input(props) {
+var styles$4 = {"input":"Input-module_input__-GpUa"};
+
+const Input = props => {
   return /*#__PURE__*/React__default["default"].createElement("input", _extends({
-    className: "border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-blue-500"
+    className: styles$4.input
   }, props));
 };
 
-// src/components/Modal.js
-var Modal = function Modal(_ref) {
-  var open = _ref.open,
-    onClose = _ref.onClose,
-    children = _ref.children;
-  // Đóng khi nhấn phím ESC
-  React.useEffect(function () {
-    var handleEsc = function handleEsc(e) {
+var styles$3 = {"overlay":"Modal-module_overlay__jQMv2","content":"Modal-module_content__6K7Qz","close":"Modal-module_close__ZaFno"};
+
+const Modal = _ref => {
+  let {
+    open,
+    onClose,
+    children
+  } = _ref;
+  React.useEffect(() => {
+    const handleEsc = e => {
       if (e.key === "Escape") onClose();
     };
     document.addEventListener("keydown", handleEsc);
-    return function () {
-      return document.removeEventListener("keydown", handleEsc);
-    };
+    return () => document.removeEventListener("keydown", handleEsc);
   }, [onClose]);
   if (!open) return null;
   return /*#__PURE__*/reactDom.createPortal(/*#__PURE__*/React__default["default"].createElement("div", {
-    className: "fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50",
-    onClick: onClose // click ngoài modal để đóng
-  }, /*#__PURE__*/React__default["default"].createElement("div", {
-    className: "bg-white p-6 rounded-lg w-96 shadow-lg transform transition-all duration-300 scale-100",
-    onClick: function onClick(e) {
-      return e.stopPropagation();
-    } // chặn click bên trong
-  }, /*#__PURE__*/React__default["default"].createElement("div", {
-    className: "flex justify-end"
-  }, /*#__PURE__*/React__default["default"].createElement("button", {
-    className: "text-gray-500 hover:text-gray-700 text-xl font-bold",
+    className: styles$3.overlay,
     onClick: onClose
-  }, "\xD7")), /*#__PURE__*/React__default["default"].createElement("div", {
-    className: "mt-2"
+  }, /*#__PURE__*/React__default["default"].createElement("div", {
+    className: styles$3.content,
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React__default["default"].createElement("button", {
+    className: styles$3.close,
+    onClick: onClose,
+    "aria-label": "\u0110\xF3ng"
+  }, "\xD7"), /*#__PURE__*/React__default["default"].createElement("div", {
+    style: {
+      marginTop: "0.5rem"
+    }
   }, children))), document.body);
 };
 
-// src/components/Card.js
-var Card = function Card(_ref) {
-  var children = _ref.children;
+var styles$2 = {"card":"Card-module_card__CTmXc"};
+
+const Card = _ref => {
+  let {
+    children
+  } = _ref;
   return /*#__PURE__*/React__default["default"].createElement("div", {
-    className: "border rounded p-4 shadow"
+    className: styles$2.card
   }, children);
 };
 
-// src/components/Cart/CartItem.js
-var CartItem = function CartItem(_ref) {
-  var id = _ref.id,
-    name = _ref.name,
-    price = _ref.price,
-    quantity = _ref.quantity,
-    onUpdate = _ref.onUpdate,
-    onRemove = _ref.onRemove;
+var styles$1 = {"container":"Cart-module_container__ipEtL","title":"Cart-module_title__IN8WK"};
+
+var styles = {"item":"CartItem-module_item__i-dbA","name":"CartItem-module_name__533DH","price":"CartItem-module_price__x50Ad","actions":"CartItem-module_actions__-8CeX"};
+
+const CartItem = ({
+  id,
+  name,
+  price,
+  quantity,
+  onUpdate,
+  onRemove
+}) => {
   return /*#__PURE__*/React__default["default"].createElement("div", {
-    className: "flex justify-between items-center mb-2"
-  }, /*#__PURE__*/React__default["default"].createElement("div", null, /*#__PURE__*/React__default["default"].createElement("div", null, name), /*#__PURE__*/React__default["default"].createElement("div", null, "$", price)), /*#__PURE__*/React__default["default"].createElement("div", {
-    className: "flex items-center"
+    className: styles.item
+  }, /*#__PURE__*/React__default["default"].createElement("span", {
+    className: styles.name
+  }, name), /*#__PURE__*/React__default["default"].createElement("span", {
+    className: styles.price
+  }, price, "\u20AB"), /*#__PURE__*/React__default["default"].createElement("div", {
+    className: styles.actions
   }, /*#__PURE__*/React__default["default"].createElement(Input, {
     type: "number",
     value: quantity,
-    onChange: function onChange(e) {
-      return onUpdate(id, Number(e.target.value));
-    },
-    className: "w-16 mr-2"
+    min: 1,
+    onChange: e => onUpdate(id, Number(e.target.value)),
+    style: {
+      width: "60px"
+    }
   }), /*#__PURE__*/React__default["default"].createElement(Button, {
-    onClick: function onClick() {
-      return onRemove(id);
-    },
-    variant: "secondary"
-  }, "Remove")));
+    variant: "secondary",
+    onClick: () => onRemove(id)
+  }, "X\xF3a")));
 };
 
-var Cart = function Cart(_ref) {
-  var _ref$initialItems = _ref.initialItems,
-    initialItems = _ref$initialItems === void 0 ? [] : _ref$initialItems;
-  var _useState = React.useState(initialItems),
-    _useState2 = _slicedToArray(_useState, 2),
-    items = _useState2[0],
-    setItems = _useState2[1];
-  var handleUpdate = function handleUpdate(id, quantity) {
-    setItems(items.map(function (item) {
-      return item.id === id ? _objectSpread2(_objectSpread2({}, item), {}, {
-        quantity: quantity
-      }) : item;
-    }));
+const Cart = _ref => {
+  let {
+    initialItems = []
+  } = _ref;
+  const [items, setItems] = React.useState(initialItems);
+  const handleUpdate = (id, quantity) => {
+    setItems(items.map(item => item.id === id ? _objectSpread2(_objectSpread2({}, item), {}, {
+      quantity
+    }) : item));
   };
-  var handleRemove = function handleRemove(id) {
-    setItems(items.filter(function (item) {
-      return item.id !== id;
-    }));
+  const handleRemove = id => {
+    setItems(items.filter(item => item.id !== id));
   };
-  return /*#__PURE__*/React__default["default"].createElement("div", null, items.map(function (item) {
-    return /*#__PURE__*/React__default["default"].createElement(CartItem, _extends({
-      key: item.id
-    }, item, {
-      onUpdate: handleUpdate,
-      onRemove: handleRemove
-    }));
-  }), /*#__PURE__*/React__default["default"].createElement("div", {
-    className: "mt-4"
-  }, /*#__PURE__*/React__default["default"].createElement(Button, {
-    onClick: function onClick() {
-      return alert("Checkout!");
-    }
-  }, "Checkout")));
+  return /*#__PURE__*/React__default["default"].createElement("div", {
+    className: styles$1.container
+  }, /*#__PURE__*/React__default["default"].createElement("div", {
+    className: styles$1.title
+  }, "Gi\u1ECF h\xE0ng"), items.map(item => /*#__PURE__*/React__default["default"].createElement(CartItem, _extends({
+    key: item.id
+  }, item, {
+    onUpdate: handleUpdate,
+    onRemove: handleRemove
+  }))));
 };
 
 exports.Button = Button;

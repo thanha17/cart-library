@@ -1,0 +1,16 @@
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.primary {
+  background: #2563eb;
+  color: #fff;
+}
+.secondary {
+  background: #e5e7eb;
+  color: #222;
+}

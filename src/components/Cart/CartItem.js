@@ -1,22 +1,24 @@
-// src/components/Cart/CartItem.js
 import React from "react";
-import { Button, Input } from "../..";
+import styles from "./CartItem.module.css";
+import { Button } from "../Button";
+import { Input } from "../Input";
 
 export const CartItem = ({ id, name, price, quantity, onUpdate, onRemove }) => {
   return (
-    <div className="flex justify-between items-center mb-2">
-      <div>
-        <div>{name}</div>
-        <div>${price}</div>
-      </div>
-      <div className="flex items-center">
+    <div className={styles.item}>
+      <span className={styles.name}>{name}</span>
+      <span className={styles.price}>{price}₫</span>
+      <div className={styles.actions}>
         <Input
           type="number"
           value={quantity}
-          onChange={(e) => onUpdate(id, Number(e.target.value))}
-          className="w-16 mr-2"
+          min={1}
+          onChange={e => onUpdate(id, Number(e.target.value))}
+          style={{ width: "60px" }}
         />
-        <Button onClick={() => onRemove(id)} variant="secondary">Remove</Button>
+        <Button variant="secondary" onClick={() => onRemove(id)}>
+          Xóa
+        </Button>
       </div>
     </div>
   );
